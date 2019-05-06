@@ -30,15 +30,33 @@
 		position: absolute;
 
 	    min-height: 20vh;
-		min-width:  30vw;
+		min-width:  6vw;
 		max-height: 20vh;
-		max-width:  30vw;
-		top: 17%;
-		left: 35%;
-		font-family:'Bebas Neue Regular';
+		max-width:  6vw;
+		top: 63%;
+		left: 13%;
+		font-family:'Bebas Neue Regular'; /* Bebas Neue Regular  Bebas Neue Book*/
 		font-weight:normal;
-		font-size:3vh;
+		font-size:5vh;
+		color: #FFFFFF;
+		line-height: 7vh;
 
+	}
+
+		#main_msgFin{
+		position: absolute;
+
+	    min-height: 20vh;
+		min-width:  12vw;
+		max-height: 20vh;
+		max-width:  12vw;
+		top: 49%;
+		left: 55%;
+		font-family:'Bebas Neue Regular'; /* Bebas Neue Regular  Bebas Neue Book*/
+		font-weight:normal;
+		font-size:8vh;
+		color: #000000;
+		line-height: 9.5vh;
 
 	}
 
@@ -110,6 +128,8 @@
 	<div id= "botonder"  onclick='acctionDer()'></div>
 	<div id= "botonsolo"  onclick='startGame()'></div>
 	<div id="main_msg"></div>
+	<div id="main_msgFin"></div>
+
 	
 </div>	
 
@@ -122,12 +142,20 @@
 
 
 <script type="text/javascript">
+
 var act_pos=0;
+var totF=0;
+var totS=0;
+var totD=0;
+var totT=0;
+
+
 
 function carga(){
 	$('#imgfondo').attr('src', 'PantalladeCarga.png');
     $('#botonder').hide()
     $('#botonizq').hide()
+    $("#main_msgFin").hide()
 }
 
 function startGame(){
@@ -139,30 +167,59 @@ function startGame(){
 }
 
 function  acctionIzq(){
-    act_pos++;
+    totF= totF+ base[act_pos][3]
+    totS= totS+ base[act_pos][4]
+    totD= totD+ base[act_pos][5]
+    totT= totT+ base[act_pos][6]
+    act_pos++;    
 	$('#imgfondo').attr('src',  base[act_pos][12]);
 	$('#botonsolo').hide()
     $('#botonder').show()
     $('#botonizq').show()
 
+    if (act_pos==20){
+       $('#botonder').hide()
+       $('#botonizq').hide()
+       $("#main_msg").hide()
+       $("#main_msgFin").show()
+    }
+    console.log(act_pos)
+    mensaje()
 }
 
 function  acctionDer(){
+	totF= totF+ base[act_pos][8]
+    totS= totS+ base[act_pos][9]
+    totD= totD+ base[act_pos][10]
+    totT= totT+ base[act_pos][11]
     act_pos++;
 	$('#imgfondo').attr('src',  base[act_pos][12]);
 	$('#botonsolo').hide()
     $('#botonder').show()
     $('#botonizq').show()
 
+    if (act_pos==20){
+       $('#botonder').hide()
+       $('#botonizq').hide()
+       $("#main_msg").hide()
+       $("#main_msgFin").show()
+    }
+    mensaje()
+
 }
 
 
 
-function mensaje(opcion){
+function mensaje(){
+	$("#main_msg").hide()
 	$("#main_msg").empty()
-	var mensaje= '<p>'+base[act_pos][1]+'</p>'
-    act_pos++
+	$("#main_msgFin").empty()
+	var mensaje= '<p>' + totF + '<br>'+ totS+'<br>'+totD+'<br>'+totT+'</p>'
     $("#main_msg").append(mensaje)
+    $("#main_msgFin").append(mensaje)
+    if (act_pos > 7 & act_pos<20){
+    	$("#main_msg").show()
+    } 
 };
 
 var act_pos=0;
@@ -192,27 +249,6 @@ var base=[
 ]
 
 
-/*
-	var items= [
-	        [ "0", "Inicio","go.jpg","01","02"],
-	        [ "01", "Edificio","edificio.jpg","011","012"],
-	        [ "02", "Parque","parque.jpg","021","022"],
-  	        [ "011", "Piso 1","piso1.jpg","0111","0112"],
-	        [ "012", "Azotea","azotea.jpg","0121","0122"],
-	        [ "021", "Banca lago","banca.jpg","0211","0212"],
-	        [ "022", "Puesto fastfood","fftruck.jpg","0221","0222"],
-
-	        [ "0111", "Recepción","recepcion.jpg","01111","01112"],
-	        [ "0112", "Sala juntas","salajuntas.jpg","01121","01122"],
-	        [ "0121", "Cuarto electrico","cuartoelectrico.jpg","01211","01212"],
-	        [ "0122", "Escalera incendios","escaleraincendio.jpg","01221","01222"],
-	        [ "0211", "Enciende cigarro","cigarro.jpg","0","01"],
-	        [ "0212", "Lee libro","leerlibro.jpg","01","0"],
-	        [ "0221", "Pide comida","perro.jpg","021","0222"],
-	        [ "0222", "Compra cafe","cafe.jpg","01","0"]
-]
-*/
-
 
 Array.prototype.clean = function(deleteValue) {
   for (var i = 0; i < this.length; i++) {
@@ -224,20 +260,10 @@ Array.prototype.clean = function(deleteValue) {
   return this;
 };
 var ID_search ="0";
-/*function create_options(ID_search){
-	//$("#itemsArea").empty()
-	var parent = items.map(function(x){if(x[0]==ID_search){return x}}).clean(undefined)
-	var childA = items.map(function(x){if(x[0]==parent[0][3]){return x}}).clean(undefined)
-	var childB = items.map(function(x){if(x[0]==parent[0][4]){return x}}).clean(undefined)
-    var parent_html='<tr> <td><p>'+ parent[0][1]+'</p><img src="'+parent[0][2]+'"></td></tr>'
-    var child_htmlA= '<tr> <td><p>'+childA[0][1]+'</p><a href="javascript:create_options(' +"'"+parent[0][3] +"'" +');"><img src="'+childA[0][2]+'"></a></td>'
-    var child_htmlB=      '<td><p>'+childB[0][1]+'</p><a href="javascript:create_options(' +"'"+parent[0][4] +"'" +');"><img src="'+childB[0][2]+'"></a></td></tr>'
-	$("#itemsArea").append("<table>"+ parent_html+child_htmlA+child_htmlB+"</table>")
-}
-create_options(ID_search)
-*/
+
 
 carga()
 </script>
 </body>
 </html>
+
