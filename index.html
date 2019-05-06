@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Selector 2 ways</title>
+	    <link rel="stylesheet" type="text/css" href="style.css"/>
+
+<style type="text/css">
+	#itemsArea img {
+		height: 100px;
+	}
+	#conteiner {
+		position: relative;
+		min-height: 100vh;
+		min-width:  100vw;
+		max-height: 100vh;
+		max-width:  100vw;
+	}
+	#imgfondo {
+		position: absolute;
+		left:0;
+		top: 0;
+	}
+	#conteiner > img {
+		min-height: 100vh;
+		min-width:  100vw;
+		max-height: 100vh;
+		max-width:  100vw;
+	}
+	#main_msg{
+		position: absolute;
+
+	    min-height: 20vh;
+		min-width:  30vw;
+		max-height: 20vh;
+		max-width:  30vw;
+		top: 17%;
+		left: 35%;
+		font-family:'Bebas Neue Regular';
+		font-weight:normal;
+		font-size:3vh;
+
+
+	}
+
+
+	#itemsArea{
+		background-color: transparent;
+	}
+	#botonizq, #botonder {
+		position: absolute;
+		height: 14%;
+		width: 18.9%;
+		/*border: 5px groove #1C6EA4;*/
+	}
+
+	#botonsolo:hover{
+		border: 8px groove #1C6EA4;
+		
+	}
+
+	#botonizq:hover{
+		border: 8px groove #1C6EA4;
+
+	}
+	#botonder:hover{
+		border: 8px groove #1C6EA4;
+	}
+
+
+	#botonsolo{
+		position: absolute;
+		bottom:  6.5%;
+		right: 5%;
+		height: 15%;
+		width: 26%;
+		background-color: transparent; 
+	}
+
+	#botonizq{
+		bottom:  7%;
+		left: 20.6%;
+		height: 13.5%;
+		width: 18.9%;
+		background-color: transparent; 
+	}
+
+	#botonder{
+	
+		background-color: transparent;
+	    bottom:  7%;
+		right: 20%;
+		height: 13.5%;
+		width: 18.9%;
+		background-color: transparent; 
+
+	}
+
+	
+
+	}
+
+
+</style>
+</head>
+<body>
+
+<div id= "conteiner">
+	<img id="imgfondo" src="PantalladeCarga.png" >
+	<div id= "botonizq" onclick='acctionIzq()' ></div>
+	<div id= "botonder"  onclick='acctionDer()'></div>
+	<div id= "botonsolo"  onclick='startGame()'></div>
+	<div id="main_msg"></div>
+	<div id ="itemsArea" > 	</div>
+</div>	
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+
+
+
+
+<script type="text/javascript">
+var act_pos=0;
+
+function carga(){
+	$('#imgfondo').attr('src', 'PantalladeCarga.png');
+    $('#botonder').hide()
+    $('#botonizq').hide()
+}
+
+function startGame(){
+	$('#imgfondo').attr('src', base[act_pos][12]);
+	$('#botonsolo').hide()
+    $('#botonder').show()
+    $('#botonizq').show()
+
+}
+
+function  acctionIzq(){
+    act_pos++;
+	$('#imgfondo').attr('src',  base[act_pos][12]);
+	$('#botonsolo').hide()
+    $('#botonder').show()
+    $('#botonizq').show()
+
+}
+
+function  acctionDer(){
+    act_pos++;
+	$('#imgfondo').attr('src',  base[act_pos][12]);
+	$('#botonsolo').hide()
+    $('#botonder').show()
+    $('#botonizq').show()
+
+}
+
+
+
+function mensaje(opcion){
+	$("#main_msg").empty()
+	var mensaje= '<p>'+base[act_pos][1]+'</p>'
+    act_pos++
+    $("#main_msg").append(mensaje)
+};
+
+var act_pos=0;
+
+var base=[
+["Jefe","Veo que acabas de graduarte, elegir un trabajo es una decisión importante en tu vida.","Sí",0,0,0,0,"Eso creo...",0,0,0,0,"01.png"],
+["Jefe","Tu primera entrevista de trabajo, ¿verdad? No temas, todos comenzamos así.","Desde luego",0,0,0,0,"Oh…",0,0,0,0,"02.png"],
+["Jefe","Comenzaré entonces. Dime, ¿cuál es la finalidad del trabajo?","Dinero",0,0,0,0,"Experiencia",0,0,0,0,"03.png"],
+["Jefe","Interesante… ¿Cuál consideras tu mayor defecto?","Ser mentiroso",0,0,0,0,"Ser flojo",0,0,0,0,"04.png"],
+["Jefe","Qué decepcionante. ¿Por qué deberíamos contratarte entonces?","¡Soy el mejor!",0,0,0,0,"Por… ¿mi honestidad?",0,0,0,0,"05.png"],
+["Jefe","Lleguemos al final de esto. ¿Cuál es tu meta en la vida?","Vivir, vivir y vivir",0,0,0,0,"La felicidad…",0,0,0,0,"06.png"],
+["Jefe","Bueno… Después de todo lo que me has contado, he llegado a una decisión.","¿Y cuál es?",0,0,0,0,"…",0,0,0,0,"07.png"],
+["Jefe","Estás contratado, muchacho, no lo arruines…","¡Se lo prometo!",0,0,0,0,"Gracias…",0,0,0,0,"08.png"],
+["Madre","¡Hijo! ¡Muchas felicidades por tu nuevo trabajo! Llenas de orgullo a esta pobre anciana.","¡Gracias, mamá!",0,0,0,0,"Te quiero, madre",1,0,0,0,"09.png"],
+["Jefe","Aquí está tu primer pago, piensa bien lo que harás con él…","¡Juegos de azar y mujerzuelas!",0,3,0,0,"Ahorrarlo",0,0,2,0,"10.png"],
+["Compañera de trabajo","Con que tú eres el nuevo. ¿Crees que me puedas cubrir el turno?","Sí",0,-3,0,2,"No",0,0,0,-2,"11.png"],
+["Madre","Ay, mijo, fíjate que vi unos zapatos requeté bonitos, pero no me alcanza…","Será en otra ocasión",-2,0,0,0,"¿Dónde los viste?",2,0,-1,0,"12.png"],
+["Jefe","Chico, sé que eres nuevo en esto, pero un contador no te vendría mal, te puedo presentar uno.","¡Por favor!",0,0,-5,0,"Gracias, pero estoy bien",0,0,0,0,"13.png"],
+["Contador","¡Mucho gusto en conocerlo! Estaré encantado de administrar sus finanzas, jejeje…","Genial",0,0,0,0,"Gracias...",0,0,0,0,"14.png"],
+["Madre","Hijo, ven a comer el lunes por la tarde a la casa. Casi no te vemos.","Claro",3,0,0,0,"Es el día más pesado de la semana",-2,0,0,0,"15.png"],
+["Jefe","Se acercan vacaciones de Semana Santa. Se estarán dando bonos a los trabajadores que no falten.","Bueno… Trabajaré",0,0,3,0,"Ni loco",0,3,0,0,"16.png"],
+["Compañero de trabajo","Tu compañero de trabajo no para de hacer ruidos estresantes y no te deja concentrar.","Ya estuvo que le voy a decir algo",0,2,0,-2,"Concéntrate en lo tuyo",0,-2,0,2,"17.png"],
+["Jefe","Has hecho un gran trabajo desde que llegaste. ¿Te irías este fin de semana a una reunión fuera de la ciudad?","¡Por supuesto!",0,0,0,3,"Pero es el cumpleaños de mi abuelo...",3,0,0,0,"18.png"],
+["Jefe","¡Tu contador te está estafando!","¡¿Qué?!",0,0,0,0,"No puede ser..",0,0,0,0,"19.png"],
+["Contador","¡No es cierto! Fueron solo… unos números. ¡No volverá a pasar!","Bueno...",0,0,-5,0,"Dame el dinero que te llevaste",0,0,5,0,"20.png"],
+["","fantalla final","Bueno...",0,0,-5,0,"Dame el dinero que te llevaste",0,0,5,0,"21PantallaFinal.png"]
+]
+
+
+
+	var items= [
+	        [ "0", "Inicio","go.jpg","01","02"],
+	        [ "01", "Edificio","edificio.jpg","011","012"],
+	        [ "02", "Parque","parque.jpg","021","022"],
+  	        [ "011", "Piso 1","piso1.jpg","0111","0112"],
+	        [ "012", "Azotea","azotea.jpg","0121","0122"],
+	        [ "021", "Banca lago","banca.jpg","0211","0212"],
+	        [ "022", "Puesto fastfood","fftruck.jpg","0221","0222"],
+
+	        [ "0111", "Recepción","recepcion.jpg","01111","01112"],
+	        [ "0112", "Sala juntas","salajuntas.jpg","01121","01122"],
+	        [ "0121", "Cuarto electrico","cuartoelectrico.jpg","01211","01212"],
+	        [ "0122", "Escalera incendios","escaleraincendio.jpg","01221","01222"],
+	        [ "0211", "Enciende cigarro","cigarro.jpg","0","01"],
+	        [ "0212", "Lee libro","leerlibro.jpg","01","0"],
+	        [ "0221", "Pide comida","perro.jpg","021","0222"],
+	        [ "0222", "Compra cafe","cafe.jpg","01","0"]
+]
+
+Array.prototype.clean = function(deleteValue) {
+  for (var i = 0; i < this.length; i++) {
+    if (this[i] == deleteValue) {         
+      this.splice(i, 1);
+      i--;
+    }
+  }
+  return this;
+};
+var ID_search ="0";
+function create_options(ID_search){
+	$("#itemsArea").empty()
+	var parent = items.map(function(x){if(x[0]==ID_search){return x}}).clean(undefined)
+	var childA = items.map(function(x){if(x[0]==parent[0][3]){return x}}).clean(undefined)
+	var childB = items.map(function(x){if(x[0]==parent[0][4]){return x}}).clean(undefined)
+    var parent_html='<tr> <td><p>'+ parent[0][1]+'</p><img src="'+parent[0][2]+'"></td></tr>'
+    var child_htmlA= '<tr> <td><p>'+childA[0][1]+'</p><a href="javascript:create_options(' +"'"+parent[0][3] +"'" +');"><img src="'+childA[0][2]+'"></a></td>'
+    var child_htmlB=      '<td><p>'+childB[0][1]+'</p><a href="javascript:create_options(' +"'"+parent[0][4] +"'" +');"><img src="'+childB[0][2]+'"></a></td></tr>'
+	$("#itemsArea").append("<table>"+ parent_html+child_htmlA+child_htmlB+"</table>")
+}
+create_options(ID_search)
+carga()
+</script>
+</body>
+</html>
