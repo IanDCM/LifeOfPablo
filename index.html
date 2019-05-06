@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Selector 2 ways</title>
+	<title>Life of Pablo</title>
 	    <link rel="stylesheet" type="text/css" href="style.css"/>
 
 <style type="text/css">
@@ -110,7 +110,7 @@
 	<div id= "botonder"  onclick='acctionDer()'></div>
 	<div id= "botonsolo"  onclick='startGame()'></div>
 	<div id="main_msg"></div>
-	<div id ="itemsArea" > 	</div>
+	
 </div>	
 
 
@@ -192,7 +192,7 @@ var base=[
 ]
 
 
-
+/*
 	var items= [
 	        [ "0", "Inicio","go.jpg","01","02"],
 	        [ "01", "Edificio","edificio.jpg","011","012"],
@@ -211,6 +211,8 @@ var base=[
 	        [ "0221", "Pide comida","perro.jpg","021","0222"],
 	        [ "0222", "Compra cafe","cafe.jpg","01","0"]
 ]
+*/
+
 
 Array.prototype.clean = function(deleteValue) {
   for (var i = 0; i < this.length; i++) {
@@ -222,8 +224,8 @@ Array.prototype.clean = function(deleteValue) {
   return this;
 };
 var ID_search ="0";
-function create_options(ID_search){
-	$("#itemsArea").empty()
+/*function create_options(ID_search){
+	//$("#itemsArea").empty()
 	var parent = items.map(function(x){if(x[0]==ID_search){return x}}).clean(undefined)
 	var childA = items.map(function(x){if(x[0]==parent[0][3]){return x}}).clean(undefined)
 	var childB = items.map(function(x){if(x[0]==parent[0][4]){return x}}).clean(undefined)
@@ -233,6 +235,8 @@ function create_options(ID_search){
 	$("#itemsArea").append("<table>"+ parent_html+child_htmlA+child_htmlB+"</table>")
 }
 create_options(ID_search)
+*/
+
 carga()
 </script>
 </body>
