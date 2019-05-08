@@ -156,6 +156,7 @@ function carga(){
     $('#botonder').hide()
     $('#botonizq').hide()
     $("#main_msgFin").hide()
+	$("#main_msg").hide()
 }
 
 function startGame(){
@@ -163,7 +164,7 @@ function startGame(){
 	$('#botonsolo').hide()
     $('#botonder').show()
     $('#botonizq').show()
-    $("#main_msgFin").show()
+    $("#main_msg").show()
 
 }
 
@@ -189,7 +190,7 @@ function  acctionIzq(){
 }
 
 function  acctionDer(){
-	totF= totF+ base[act_pos][8]
+    totF= totF+ base[act_pos][8]
     totS= totS+ base[act_pos][9]
     totD= totD+ base[act_pos][10]
     totT= totT+ base[act_pos][11]
